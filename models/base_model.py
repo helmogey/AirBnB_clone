@@ -32,6 +32,8 @@ class BaseModel:
         model_dict['updated_at'] = model_dict['updated_at'].isoformat(sep='T', timespec='microseconds')
         return model_dict
 
+
+
     def __str__(self):
         """ print: [<class name>] (<self.id>) <self.__dict__>"""
         return f"{self.__class__.__name__}('{self.id}', '{self.created_at}', '{self.updated_at}')"
