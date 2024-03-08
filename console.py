@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """Console for HBNB project"""
 
     prompt = '(hbnb) '
-    classes = {"BaseModel"}
+    classes = {"BaseModel", "User"}
     file_path = "file.json"
     file_storage = storage
 
@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Do nothing when an empty line is entered"""
         pass
-    
+
     def do_create(self, class_name):
         """
         Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id.
