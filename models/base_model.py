@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import uuid
 import datetime
+from models import storage
+
 class BaseModel:
     def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
@@ -15,11 +17,18 @@ class BaseModel:
                     self.updated_at = datetime.datetime.strptime(value, frmat)
                 elif key == "id":
                     self.id = value
+            if not kwargs:
+                storage.new(self)  # New instance, register with storage
+        else:
+            # Also call storage.new for new instances without arguments
+            storage.new(self)
 
 
     def save(self):
         """Updates the updated_at attribute with the current datetime."""
         self.updated_at = datetime.datetime.now()
+        storage.save(self)
+
 
     def to_dict(self):
         """
