@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 import uuid
 import datetime
-from models import storage
-
+import models
 class BaseModel:
     def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
@@ -18,16 +17,16 @@ class BaseModel:
                 elif key == "id":
                     self.id = value
             if not kwargs:
-                storage.new(self)  # New instance, register with storage
+                models.storage.new(self)  # New instance, register with storage
         else:
             # Also call storage.new for new instances without arguments
-            storage.new(self)
+            models.storage.new(self)
 
 
     def save(self):
         """Updates the updated_at attribute with the current datetime."""
         self.updated_at = datetime.datetime.now()
-        storage.save(self)
+        models.storage.save(self)
 
 
     def to_dict(self):
@@ -37,8 +36,8 @@ class BaseModel:
         """
         model_dict = self.__dict__.copy()
         model_dict['__class__'] = self.__class__.__name__
-        model_dict['created_at'] = model_dict['created_at'].isoformat(sep='T', timespec='microseconds')
-        model_dict['updated_at'] = model_dict['updated_at'].isoformat(sep='T', timespec='microseconds')
+        model_dict['created_at'] = self.created_at.isoformat()
+        model_dict['updated_at'] = self.updated_at.isoformat()
         return model_dict
 
 

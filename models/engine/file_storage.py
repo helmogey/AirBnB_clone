@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import sys
+from models.base_model import BaseModel
 
 class FileStorage:
     "serializes instances to a JSON file and deserializes JSON file to instances"
@@ -27,6 +28,7 @@ class FileStorage:
         with open(FileStorage.__file_path, "w") as f:
             json.dump(dict_of_obj, f)
 
+
     def reload(self):
         """deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
@@ -35,7 +37,6 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as file:
                 # Read the JSON data from the file
                 json_data = json.load(file)
-
                 # Check if the data is a dictionary (expected format)
                 if isinstance(json_data, dict):
                     self.__objects = {}  # Clear existing objects before reloading
