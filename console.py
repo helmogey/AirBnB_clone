@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """Console for HBNB project"""
 
     prompt = '(hbnb) '
-    classes = {"BaseModel", "User"}
+    classes = {"BaseModel", "User", "State", "City", "Amenity", "Review", "Place"}
     file_path = "file.json"
     file_storage = storage
 
