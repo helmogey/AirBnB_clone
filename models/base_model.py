@@ -44,4 +44,6 @@ class BaseModel:
 
     def __str__(self):
         """ print: [<class name>] (<self.id>) <self.__dict__>"""
-        return f"{self.__class__.__name__}('{self.id}', '{self.created_at}', '{self.updated_at}')"
+        # return f"{self.__class__.__name__}('{self.id}', '{self.created_at}', '{self.updated_at}')"
+
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)

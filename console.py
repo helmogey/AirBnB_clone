@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
     classes = {"BaseModel", "User", "State", "City", "Amenity", "Review", "Place"}
-    file_path = "file.json"
+    # file_path = "file.json"
     file_storage = storage
 
     def do_quit(self, arg):
@@ -23,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF command to exit the program"""
+        print("")
         return True
 
     def do_help(self, arg):
