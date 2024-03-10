@@ -10,6 +10,8 @@ class BaseModel:
         frmat = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) > 0:
             for key, value in kwargs:
+                print("hany  value")
+                print(value)
                 if key == "created_at":
                     self.created_at = datetime.datetime.strptime(value, frmat)
                 elif key == "updated_at":
@@ -34,6 +36,10 @@ class BaseModel:
         Returns a dictionary containing all keys and values of the instance's __dict__,
         including the class name and ISO formatted timestamps.
         """
+        print("hany start")
+        print(self.created_at)
+        print(type(self.created_at))
+        print("hany end")
         model_dict = self.__dict__.copy()
         model_dict['__class__'] = self.__class__.__name__
         model_dict['created_at'] = self.created_at.isoformat()
