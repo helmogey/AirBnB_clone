@@ -37,8 +37,18 @@ class BaseModel:
         """
         model_dict = self.__dict__.copy()
         model_dict['__class__'] = self.__class__.__name__
-        model_dict['created_at'] = self.created_at.isoformat()
-        model_dict['updated_at'] = self.updated_at.isoformat()
+        if isinstance(self.created_at, str):
+            # Parse the string into a datetime object using the format string
+            frmat = "%Y-%m-%dT%H:%M:%S.%f"
+            self.created_at = datetime.datetime.strptime(self.created_at, frmat)
+        else:
+            model_dict['created_at'] = self.created_at.isoformat()
+        if isinstance(self.updated_at, str):
+            # Parse the string into a datetime object using the format string
+            frmat = "%Y-%m-%dT%H:%M:%S.%f"
+            self.updated_at = datetime.datetime.strptime(self.updated_at, frmat)
+        else:
+            model_dict['updated_at'] = self.updated_at.isoformat()
         return model_dict
 
 
