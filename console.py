@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# console.py
+""" consol.py defines HBNBCommand class"""
 import cmd
 import json
 import sys

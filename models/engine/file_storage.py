@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" file_storage.py defines FileStorage class"""
+
 import json
 import sys
 from models.base_model import BaseModel
