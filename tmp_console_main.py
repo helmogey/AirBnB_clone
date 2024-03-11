@@ -95,8 +95,10 @@ class HBNBCommand(cmd.Cmd):
             new_instance = class_()
             self.file_storage.new(new_instance)
             self.file_storage.save()
+            print(new_instance.id)
         except Exception as e:
             print("** class doesn't exist **")
+            print(e)
 
     def do_show(self, args):
         """Prints the string representation of an instance based on the class name and id"""
@@ -112,6 +114,7 @@ class HBNBCommand(cmd.Cmd):
             key = "{}.{}".format(args[0], args[1])
             try:
                 obj = objects[key]
+                print(obj)
             except KeyError:
                 print("** no instance found **")
 
@@ -138,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
             self.file_storage.save()
         except Exception as e:
             print("** class doesn't exist **")
+            print(e)
 
     def do_all(self, args):
         """Prints all string representation of all instances based or not on the class name"""
@@ -147,6 +151,7 @@ class HBNBCommand(cmd.Cmd):
             for name in objects.keys():
                 obj = objects[name]
                 list.append(str(obj))
+            print(list)
             return
         args = args.split(" ")
         if args[0] in self.classes:
@@ -154,6 +159,7 @@ class HBNBCommand(cmd.Cmd):
                 if name[0:len(args[0])] == args[0]:
                     obj = objects[name]
                 list.append(str(obj))
+            print(list)
         else:
             print("** class doesn't exist **")
             return
