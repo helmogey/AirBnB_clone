@@ -7,7 +7,7 @@ import re
 from models import storage
 from models.base_model import BaseModel
 
-def is_float(x):
+def check_float(x):
     """Checks if `x` is float.
     """
     try:
@@ -17,8 +17,7 @@ def is_float(x):
     else:
         return True
 
-
-def is_int(x):
+def check_int(x):
     """Checks if `x` is int.
     """
     try:
@@ -29,21 +28,19 @@ def is_int(x):
     else:
         return a == b
 
-
-def parse_str(arg):
+def parse_args(arg):
     """Parse `arg` to an `int`, `float` or `string`.
     """
     parsed = re.sub("\"", "", arg)
 
-    if is_int(parsed):
+    if check_int(parsed):
         return int(parsed)
-    elif is_float(parsed):
+    elif check_float(parsed):
         return float(parsed)
     else:
         return arg
 
-
-def validate_attrs(args):
+def validate_args(args):
     """Runs checks on args to validate classname attributes and values.
     """
     if len(args) < 3:
@@ -53,7 +50,6 @@ def validate_attrs(args):
         print("** value missing **")
         return False
     return True
-
 
 class HBNBCommand(cmd.Cmd):
     """Console for HBNB project"""
@@ -103,7 +99,6 @@ class HBNBCommand(cmd.Cmd):
         except Exception as e:
             print("** class doesn't exist **")
             print(e)
-
 
     def do_show(self, args):
         """Prints the string representation of an instance based on the class name and id"""
@@ -195,14 +190,14 @@ class HBNBCommand(cmd.Cmd):
                 setattr(req_instance, k, v)
             storage.save()
             return
-        if not validate_attrs(args):
+        if not validate_args(args):
             return
         first_attr = re.findall(r"^[\"\'](.*?)[\"\']", args[3])
         if first_attr:
             setattr(req_instance, args[2], first_attr[0])
         else:
             value_list = args[3].split()
-            setattr(req_instance, args[2], parse_str(value_list[0]))
+            setattr(req_instance, args[2], parse_args(value_list[0]))
         storage.save()
 
 
