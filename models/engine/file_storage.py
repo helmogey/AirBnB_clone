@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json
 import sys
-from models.base_model import BaseModel
 
 class FileStorage:
     "serializes instances to a JSON file and deserializes JSON file to instances"
@@ -54,4 +53,3 @@ class FileStorage:
         except FileNotFoundError:
             # File not found, but don't raise an exception as per requirement
             return
-

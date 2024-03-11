@@ -1,16 +1,11 @@
 #!/usr/bin/python3
-
-
 # console.py
-
 import cmd
 import json
 import sys
 import re
 from models import storage
 from models.base_model import BaseModel
-
-
 
 def is_float(x):
     """Checks if `x` is float.
@@ -64,7 +59,8 @@ class HBNBCommand(cmd.Cmd):
     """Console for HBNB project"""
 
     prompt = '(hbnb) '
-    classes = {"BaseModel", "User", "State", "City", "Amenity", "Review", "Place"}
+    classes = {"BaseModel", "User", "State", "City",
+               "Amenity", "Review", "Place"}
     # file_path = "file.json"
     file_storage = storage
 
