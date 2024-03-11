@@ -9,7 +9,9 @@ class BaseModel:
         self.updated_at = datetime.datetime.now()
         frmat = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) > 0:
-            for key, value in kwargs:
+            print(kwargs)
+            for key in kwargs:
+                value = kwargs[key]
                 if key == "created_at":
                     self.created_at = datetime.datetime.strptime(value, frmat)
                 elif key == "updated_at":

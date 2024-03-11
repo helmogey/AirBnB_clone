@@ -54,4 +54,3 @@ class FileStorage:
         except FileNotFoundError:
             # File not found, but don't raise an exception as per requirement
             return
-        
